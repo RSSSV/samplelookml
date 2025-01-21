@@ -1,6 +1,10 @@
 view: transactions {
   sql_table_name: transactions ;;
 
+  dimension: product_id {
+    sql: ${TABLE}.product_id ;;
+  }
+
   dimension: transaction_id {
     primary_key: yes
     sql: ${TABLE}.transaction_id ;;

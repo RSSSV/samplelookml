@@ -9,7 +9,7 @@ view: inventory {
     sql: ${TABLE}.location ;;
   }
 
-  measure: stock_level {
+  measure: total_stock {
     type: sum
     sql: ${TABLE}.quantity ;;
   }
