@@ -2,18 +2,18 @@ connection: "spanner_retail_connection"  # Replace with your actual connection n
 
 include: "/*.view.lkml"  # Include all views
 
-explore: products {
+explore: Products {
   label: "Products with Transactions and Inventory"
 
   # Join Transactions with Products
-  join: transactions {
+  join: Transactions {
     relationship: one_to_many
-    sql_on: ${products.product_id} = ${transactions.product_id} ;;  # This works since ProductID exists in both tables
+    sql_on: ${Products.ProductID} = ${Transactions.ProductID} ;;  # Use exact case for table and column
   }
 
   # Join Inventory with Products
-  join: inventory {
+  join: Inventory {
     relationship: one_to_many
-    sql_on: ${products.product_id} = ${inventory.product_id} ;;
+    sql_on: ${Products.ProductID} = ${Inventory.ProductID} ;;  # Use exact case for table and column
   }
 }

@@ -1,26 +1,26 @@
-view: transactions {
-  sql_table_name: transactions ;;
+view: Transactions {
+  sql_table_name: Transactions ;;  # Exact case-sensitive table name in Spanner
 
-  dimension: product_id {
-    sql: ${TABLE}.product_id ;;
+  dimension: ProductID {
+    sql: ${TABLE}.ProductID ;;  # Use exact case
   }
 
-  dimension: transaction_id {
+  dimension: TransactionID {
     primary_key: yes
-    sql: ${TABLE}.transaction_id ;;
+    sql: ${TABLE}.TransactionID ;;  # Exact case for column
   }
 
-  dimension: type {
-    sql: ${TABLE}.type ;;  # 'Sale' or 'Restock'
+  dimension: Type {
+    sql: ${TABLE}.Type ;;  # 'Sale' or 'Restock'
   }
 
-  measure: total_quantity {
+  measure: TotalQuantity {
     type: sum
-    sql: ${TABLE}.quantity ;;
+    sql: ${TABLE}.Quantity ;;  # Exact case for column
   }
 
-  dimension_group: transaction_time {
+  dimension_group: TransactionTime {
     type: time
-    sql: ${TABLE}.timestamp ;;
+    sql: ${TABLE}.Timestamp ;;  # Exact case for column
   }
 }

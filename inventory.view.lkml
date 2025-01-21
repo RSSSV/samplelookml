@@ -1,16 +1,16 @@
-view: inventory {
-  sql_table_name: inventory ;;
+view: Inventory {
+  sql_table_name: Inventory ;;  # Exact case-sensitive table name in Spanner
 
-  dimension: product_id {
-    sql: ${TABLE}.product_id ;;
+  dimension: ProductID {
+    sql: ${TABLE}.ProductID ;;  # Use exact case
   }
 
-  dimension: location {
-    sql: ${TABLE}.location ;;
+  dimension: Location {
+    sql: ${TABLE}.Location ;;  # Exact case for column
   }
 
-  measure: total_stock {
+  measure: TotalStock {
     type: sum
-    sql: ${TABLE}.quantity ;;
+    sql: ${TABLE}.Quantity ;;  # Exact case for column
   }
 }

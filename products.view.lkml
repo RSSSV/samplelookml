@@ -1,30 +1,30 @@
-view: products {
-  sql_table_name: products ;;  # Table name in Spanner
+view: Products {
+  sql_table_name: Products ;;  # Exact case-sensitive table name in Spanner
 
-  dimension: product_id {
+  dimension: ProductID {
     primary_key: yes
-    sql: ${TABLE}.product_id ;;
+    sql: ${TABLE}.ProductID ;;  # Use exact case
   }
 
-  dimension: name {
-    sql: ${TABLE}.name ;;
+  dimension: Name {
+    sql: ${TABLE}.Name ;;  # Exact case for column
   }
 
-  dimension: description {
-    sql: ${TABLE}.description ;;
+  dimension: Description {
+    sql: ${TABLE}.Description ;;  # Exact case for column
   }
 
-  dimension: price {
-    sql: ${TABLE}.price ;;
+  dimension: Price {
+    sql: ${TABLE}.Price ;;  # Exact case for column
   }
 
-  measure: total_quantity_sold {
+  measure: TotalInventoryQuantity {
     type: sum
-    sql: (SELECT SUM(quantity) FROM transactions WHERE transactions.product_id = ${TABLE}.product_id AND transactions.type = 'Sale') ;;
+    sql: (SELECT SUM(Quantity) FROM Inventory WHERE Inventory.ProductID = ${TABLE}.ProductID) ;;
   }
 
-  measure: total_inventory_quantity {
+  measure: TotalQuantitySold {
     type: sum
-    sql: (SELECT SUM(quantity) FROM inventory WHERE inventory.product_id = ${TABLE}.product_id) ;;
+    sql: (SELECT SUM(Quantity) FROM Transactions WHERE Transactions.ProductID = ${TABLE}.ProductID AND Transactions.Type = 'Sale') ;;
   }
 }
